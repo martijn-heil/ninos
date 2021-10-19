@@ -1,0 +1,18 @@
+[package]
+name = "ninos"
+version = "0.1.0"
+authors = ["Martijn Heil <m.heil375@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+uefi = "0.4.2"
+#uefi-services = "0.2.0"
+log = { version = "0.4.8", default-features = false }
+x86 = "0.29.0"
+x86_64 = "0.9.3"
+heapless = "0.5.2"
+uart_16550 = "0.2.1"
+byte-unit = "3.0.3"
+#prettytable-rs = { path = "../prettytable-rs" }
