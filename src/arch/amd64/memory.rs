@@ -181,10 +181,12 @@ fn get_frames<'a, I>(conventional_memory: I) -> heapless::Vec<MyMemoryDescriptor
                                 else if normal_wasted < huge_wasted && normal_wasted < large_wasted { (PageSize::Normal(), normal_page_count, normal_wasted) }
                                 else { (PageSize::Large(), large_page_count, large_wasted) }; // If all page sizes waste the exact same amount of memory.
 
+    let usable_conventional_memory: u64 = final_page_count * recommended_page_size.size();
+
     info!("Recommended page size: {:?}, wasting {} and leaving {} of usable conventional memory",
         recommended_page_size,
         Byte::from_bytes(waste as u128).get_appropriate_unit(true),
-        Byte::from_bytes(final_page_count as u128).get_appropriate_unit(true));
+        Byte::from_bytes(usable_conventional_memory as u128).get_appropriate_unit(true));
 
     fn print_waste(page_size: PageSize, waste: u64) { info!("\t{:?} would waste {} bytes", page_size, Byte::from_bytes(waste as u128).get_appropriate_unit(true)); }
     print_waste(PageSize::Huge(), huge_wasted);
